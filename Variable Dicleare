@@ -1,0 +1,31 @@
+INCLUDE "EMU8086.INC"
+.MODEL SMALL
+.STACK 100H
+.DATA
+variable1 DB 3
+variable2 DB ?
+.CODE
+
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+    
+    MOV AH,1
+    INT 21H 
+    MOV variable2,AL
+    
+    PRINTN ""
+    MOV AH,2  
+    ADD variable1,'0'
+    MOV DL,variable1
+    INT 21H 
+    MOV DL,variable2
+    INT 21H
+       
+    
+        EXIT:
+        MOV AH,4CH
+        INT 21H
+        
+    MAIN ENDP
+END MAIN
