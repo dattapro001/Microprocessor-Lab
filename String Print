@@ -1,0 +1,37 @@
+INCLUDE "EMU8086.INC"
+.MODEL SMALL
+.STACK 100H
+.DATA
+string1 DB ""MICROPROCESSOR"$"
+string2 DB ""ASSEMBLYLANGUAGE"$"
+string3 DB ""COMPUTERINTERFACINGSESSIONAL"$"
+.CODE
+
+MAIN PROC 
+
+    MOV AX,@DATA
+    MOV DS,AX
+    
+    LEA DX,string1
+    MOV AH,9
+    INT 21H
+    
+    PRINTN ""
+    LEA DX,string2
+    MOV AH,9
+    INT 21H
+    
+    PRINTN ""
+    LEA DX,string3
+    MOV AH,9
+    INT 21H
+            
+            
+  
+  
+    EXIT:
+    MOV AH,4CH
+    INT 21H
+     
+    MAIN ENDP
+END MAIN
