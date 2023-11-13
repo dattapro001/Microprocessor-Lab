@@ -1,0 +1,69 @@
+INCLUDE "EMU8086.INC"
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+
+MAIN PROC
+    MOV AH,1
+    INT 21H
+    
+    MOV BH,AL
+    INT 21H
+    
+    MOV CH,AL
+    INT 21H
+    
+    MOV DH,AL
+    
+    CMP BH,CH
+    JL L1
+ 
+  
+    CMP CH,DH
+    JL L3 
+     
+    PRINTN ""
+    MOV AH,2
+    MOV DL,DH
+    INT 21H
+    
+    JMP EXIT
+    
+    L1:
+    CMP BH,DH
+    JL L2  
+    PRINTN ""
+    MOV AH,2
+    MOV DL,DH
+    INT 21H  
+    
+    JMP EXIT
+    
+    L2:
+    PRINTN ""
+    MOV AH,2
+    MOV DL,BH
+    INT 21H 
+    
+    JMP EXIT
+    
+    L3:
+    CMP CH,BH
+    MOV AH,2
+    MOV DL,CH
+    INT 21H
+    
+            
+                                                                                                                                      
+    EXIT:
+    MOV AH,4CH
+    INT 21H
+    
+    MAIN ENDP
+END MAIN 
+
+
+    
+    
+    
